@@ -6,6 +6,12 @@ Ficha digital de personagens de Oblívio RPG, executada no navegador. Permite ca
 
 Sirva esta pasta por HTTP e abra `/` (ou `index.html`). No VS Code, por exemplo, use **Open with Live Server** em `index.html`. Sem sessão, a entrada redireciona para `/pages/login/`; após autenticar, abre a ficha em `/pages/`. A página usa módulos JavaScript nativos (`type="module"`); abrir por `file://` não é suportado. Use **localhost ou HTTPS**, necessários à API de derivação de senhas. Não há etapa de build ou instalação de dependências para a aplicação.
 
+## GitHub Pages
+
+Os endereços são relativos à raiz da aplicação, calculada a partir de `Js/auth/session.js`. Assim, a mesma pasta funciona em `http://localhost:porta/` e em `https://usuario.github.io/RPG_online/`: entrada, login e ficha preservam o prefixo do projeto. No Pages, o fluxo usa `/RPG_online/pages/login/` e `/RPG_online/pages/`, inclusive ao sair ou abrir a ficha sem sessão.
+
+Ao adicionar links ou recursos locais, evite começar o caminho com `/`, pois isso aponta para a raiz do domínio e remove o prefixo do repositório. Para redirecionamentos da sessão, reutilize `LOGIN_URL` e `SHEET_URL`. Mantenha a capitalização dos nomes das pastas e arquivos.
+
 ## Acesso local
 
 - Na primeira visita, escolha **Criar uma conta local**, informe usuário e senha de 8 a 128 caracteres e confirme a senha. As próximas visitas permitem entrar com esses dados.

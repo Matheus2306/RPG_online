@@ -14,10 +14,11 @@ const SESSION_DURATION = 7 * 24 * 60 * 60 * 1000;
 // Alterar este valor exige migrar/versionar o cadastro: ele também é usado para conferir senhas antigas.
 const ITERATIONS = 600000;
 
-// URLs relativas ao módulo também permitem hospedar a ficha em uma subpasta.
+// A raiz vem do módulo para preservar a subpasta do projeto no GitHub Pages ou em outro servidor.
 const APP_URL = new URL('../../', import.meta.url);
 const LOGIN_URL = new URL('pages/login/', APP_URL);
-const SHEET_URL = new URL('/pages', APP_URL);
+// Sem a barra inicial, mantém a raiz da aplicação; a barra final identifica o diretório com index.html.
+const SHEET_URL = new URL('pages/', APP_URL);
 
 /** Lê os cadastros; dados ausentes significam primeiro acesso, formato inválido gera erro. */
 function readAccounts() {
