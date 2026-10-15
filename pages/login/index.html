@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#0b0e0f" />
+    <title>Entrar · Oblívio RPG</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cardo:ital,wght@0,400;0,700;1,400&family=Cinzel+Decorative:wght@400;700&family=UnifrakturCook:wght@700&display=swap" />
+    <link rel="stylesheet" href="../../CSS/style.css" />
+    <link rel="stylesheet" href="../../CSS/auth/login.css" />
+    <script type="module" src="../../Js/auth/login.js"></script>
+  </head>
+  <body class="auth-page">
+    <main class="auth-layout">
+      <div class="auth-brand">
+        <span class="auth-mark" aria-hidden="true">♜</span>
+        <p class="auth-eyebrow">Ficha alternativa</p>
+        <p class="auth-wordmark">Oblívio RPG</p>
+        <p class="auth-tagline">Toda Persona tem uma história.<br />A sua começa aqui.</p>
+        <div class="auth-ornament" aria-hidden="true">──── ◆ ────</div>
+      </div>
+      <section class="c auth-card" aria-labelledby="auth-title">
+        <h1 id="auth-title">Entre no Oblívio</h1>
+        <p class="auth-intro">Acesse suas Personas e continue sua jornada.</p>
+        <form id="login-form">
+          <label for="username">Usuário</label>
+          <input id="username" name="username" autocomplete="username" minlength="3" maxlength="32" placeholder="Seu nome de usuário" aria-describedby="username-hint" required />
+          <small id="username-hint">3 a 32 letras, números, pontos, traços ou sublinhados.</small>
+          <label for="password">Senha</label>
+          <div class="auth-password">
+            <input id="password" name="password" type="password" autocomplete="current-password" minlength="8" maxlength="128" placeholder="Pelo menos 8 caracteres" required />
+            <button id="show-password" type="button" aria-controls="password" aria-pressed="false">Mostrar</button>
+          </div>
+          <div id="confirmation-field" class="auth-confirmation" hidden>
+            <label for="confirmation">Confirme a senha</label>
+            <input id="confirmation" name="confirmation" type="password" autocomplete="new-password" minlength="8" maxlength="128" placeholder="Repita sua senha" />
+          </div>
+          <p id="auth-message" class="auth-message" role="alert" aria-live="assertive"></p>
+          <button id="auth-submit" class="p auth-submit" type="submit">Entrar na ficha</button>
+        </form>
+        <div class="auth-divider" aria-hidden="true"><span>◆</span></div>
+        <button id="auth-toggle" class="auth-toggle" type="button">Criar uma conta local</button>
+        <p class="auth-notice">Seu acesso e suas fichas ficam apenas neste navegador. Use uma senha exclusiva para este site.</p>
+        <noscript><p>Ative o JavaScript para criar sua conta e acessar a ficha.</p></noscript>
+      </section>
+      <p class="auth-footer">Entre o que se lembra e o que se esquece.</p>
+    </main>
+  </body>
+</html>

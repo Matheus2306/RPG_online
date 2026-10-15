@@ -1,7 +1,7 @@
 import { blank, state } from './state.js';
 import { hist } from '../dice/history.js';
 import { build, sync } from '../ui/ui.js';
-import { Store, cloud } from '../storage/storage.js';
+import { Store } from '../storage/storage.js';
 import { bindDice } from '../dice/dice.js';
 import { applyAcc } from '../ui/accessibility.js';
 
@@ -21,4 +21,5 @@ build();
   if (latest) state.sheet = Object.assign(blank(), latest);
 })();
 sync();
-cloud();
+// Contas locais não são vinculadas à conta externa do ambiente para evitar misturar fichas.
+

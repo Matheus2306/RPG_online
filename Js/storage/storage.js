@@ -1,15 +1,24 @@
 import { $ } from "../utils/utils.js";
 import { blank, state } from "../core/state.js";
 import { sync } from "../ui/ui.js";
+import { getSession } from "../auth/session.js";
 
 /* ============================================================
    12. PERSISTÊNCIA (localStorage + conta na nuvem, se houver)
    ============================================================ */
-const STORAGE_KEY = "oblivio-fichas-v1";
+// Captura a conta que abriu este módulo; a chave não muda no meio da edição ao trocar de conta em outra aba.
+const session = getSession();
+// A primeira conta mantém as fichas existentes; as demais possuem espaços próprios.
+const STORAGE_KEY = session?.ownsLegacySheets
+  ? "oblivio-fichas-v1"
+  : `oblivio-fichas-v1:${session?.accountId}`;
 let cloudCol = null; // coleção do banco da conta (null = só navegador)
 
 const Store = {
   get() {
+    // Compara a conta original com a sessão atual antes de ler fichas desta aba.
+    // Se o acesso terminou ou mudou de usuário, não entrega dados antigos à interface.
+    if (!session || getSession()?.accountId !== session.accountId) return {};
     try {
       return JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
     } catch (e) {
@@ -17,6 +26,8 @@ const Store = {
     }
   },
   set(obj) {
+    // Revalida na escrita: uma aba antiga ou um salvamento atrasado não pode persistir após a troca de conta.
+    if (!session || getSession()?.accountId !== session.accountId) return;
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(obj));
     } catch (e) {
@@ -33,6 +44,8 @@ function scheduleSave() {
 }
 
 function persist(manual) {
+  // Uma aba antiga não pode gravar após logout, expiração ou troca de conta.
+  if (!session || getSession()?.accountId !== session.accountId) return;
   state.sheet.t = Date.now();
   const all = Store.get();
   all[state.sheet.id] = state.sheet;

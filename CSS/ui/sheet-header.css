@@ -1,0 +1,15 @@
+/* Os grupos permanecem na mesma linha quando há espaço e quebram sem esticar os controles no celular. */
+.sheet-header .d-align {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  max-width: 100%;
+}
+
+/* Nomes longos de fichas não podem impor uma largura maior que a do grupo. */
+.sheet-header #sel {
+  min-width: 0;
+  max-width: 100%;
+}
